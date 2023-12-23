@@ -1,9 +1,24 @@
 import React from 'react';
 import { Navbar, Container, Nav, Form, Button,Row} from 'react-bootstrap';
 import image from'../images/image.jpg'
-const NavBar=({search})=>{
+import{getAllMovies,getSearch}from'../redux/Action/movieaction.js'
+import axios from 'axios'
+import{useDispatch,useSelector}from 'react-redux'
+const NavBar=()=>{
   const onSearch=(word)=>{
-    search(word)
+    Search(word)
+  }
+  const dispatch=useDispatch()
+  const Search= async(word)=>{
+    if(word===""){
+      dispatch(getAllMovies());
+    }
+    else{
+      dispatch(getSearch(word));
+        //setMovies(res.data.results); 
+        //setPagecount(res.data.total_pages)
+      }
+
   }
  return(
 <Row>
